@@ -2,40 +2,20 @@
 // ADDED FS
 const fs = require("fs");
 const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
 const questions = [
   {
     type: "input",
-    message: "What is your user name?",
-    name: "name",
-  },
-  {
-    type: "input",
-    message: "What is your location?",
-    name: "location",
-  },
-  {
-    type: "input",
-    message: "Provide a brief bio of yourself:",
-    name: "bio",
-  },
-  {
-    type: "input",
-    message: "Provide your LinkedIn URL:",
-    name: "linkedIn",
-  },
-  {
-    type: "input",
-    message: "Provide your gitHub URL:",
-    name: "gitHub",
+    message: "What is you project titled",
+    name: "title",
   },
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-  const README = `test`;
-  fs.writeFile("index.html", README, (err) =>
+  fs.writeFile(fileName, data, (err) =>
     err ? console.error(err) : console.log("Commit logged!")
   );
 }
@@ -45,9 +25,10 @@ function init() {
   inquirer
     .prompt(questions)
 
-    .then((response) => {
-      console.log(response);
-      writeToFile(response);
+    .then((data) => {
+      console.log(data);
+
+      writeToFile("README.md", generateMarkdown(data));
     });
 }
 
