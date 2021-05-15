@@ -8,8 +8,59 @@ const generateMarkdown = require("./utils/generateMarkdown");
 const questions = [
   {
     type: "input",
-    message: "What is you project titled",
+    message: "Project Title: ",
     name: "title",
+  },
+  {
+    type: "input",
+    message: "Description: ",
+    name: "description",
+  },
+  {
+    type: "input",
+    message: "Why did you build this product? ",
+    name: "descriptionWhy",
+  },
+  {
+    type: "input",
+    message: "What problem did it solve? ",
+    name: "descriptionProblem",
+  },
+  {
+    type: "input",
+    message: "Installation Instructions: ",
+    name: "installation",
+  },
+  {
+    type: "input",
+    message: "Usage Information: ",
+    name: "usage",
+  },
+  {
+    type: "input",
+    message: "Contribution Guidelines:",
+    name: "contributing",
+  },
+  {
+    type: "input",
+    message: "Test Instructions: ",
+    name: "tests",
+  },
+  {
+    type: "list",
+    message: "Please choose a license: ",
+    name: "license",
+    choices: ["None", "MIT", "Unlicense"],
+  },
+  {
+    type: "input",
+    message: "Please provide your GitHub username: ",
+    name: "gitHub",
+  },
+  {
+    type: "input",
+    message: "Please provide your email: ",
+    name: "email",
   },
 ];
 
@@ -27,7 +78,6 @@ function init() {
 
     .then((data) => {
       console.log(data);
-
       writeToFile("README.md", generateMarkdown(data));
     });
 }
